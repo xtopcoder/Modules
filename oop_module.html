@@ -1,0 +1,333 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>MODULE: OOP in VB.NET (Students) — Inheritance · Encapsulation · Polymorphism</title>
+  <style>
+    :root{
+      --bg:#f7f9fc; --card:#ffffff; --muted:#6b7280; --accent:#0b74de;
+      --code-bg:#0f1724; --code-fg:#e6eef6;
+    }
+    html,body{height:100%;margin:0;font-family:Inter,Segoe UI,Roboto,Helvetica,Arial,sans-serif;background:var(--bg);color:#0b1220;}
+    .container{max-width:1000px;margin:28px auto;padding:24px;}
+    header{display:flex;align-items:center;gap:16px;margin-bottom:18px;}
+    header h1{font-size:20px;margin:0}
+    .meta{color:var(--muted);font-size:13px}
+    nav{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:18px}
+    a.navlink{background:var(--card);padding:8px 12px;border-radius:8px;color:var(--accent);text-decoration:none;border:1px solid rgba(11,18,34,0.06);font-size:14px}
+    section.card{background:var(--card);padding:18px;border-radius:12px;margin-bottom:14px;box-shadow:0 6px 18px rgba(12,32,64,0.04)}
+    h2{margin:0 0 8px 0;font-size:18px}
+    p.lead{color:var(--muted);margin-top:0}
+    .code{background:var(--code-bg);color:var(--code-fg);padding:12px;border-radius:8px;overflow:auto;font-family:SFMono-Regular,Consolas,Monaco,monospace;font-size:13px;line-height:1.45}
+    pre{margin:0}
+    .btn {display:inline-block;padding:6px 10px;border-radius:8px;background:var(--accent);color:white;text-decoration:none;font-size:13px;border:none;cursor:pointer}
+    .flex{display:flex;gap:12px;align-items:center}
+    .two-col{display:grid;grid-template-columns:1fr 360px;gap:14px}
+    aside.tips{background:linear-gradient(180deg,#fff,#fbfdff);padding:12px;border-radius:8px;border:1px solid rgba(11,18,34,0.03)}
+    .small{font-size:13px;color:var(--muted)}
+    .copy-btn{float:right;margin-top:-36px}
+    footer{color:var(--muted);font-size:13px;margin-top:18px}
+    @media(max-width:880px){.two-col{grid-template-columns:1fr} nav{justify-content:flex-start;overflow:auto}}
+  </style>
+</head>
+
+<body>
+<div class="container">
+<header>
+  <div>
+    <h1>MODULE: OOP in VB.NET (Windows Forms)</h1>
+    <div class="meta">Inheritance · Encapsulation · Polymorphism — VB.NET Windows Forms</div>
+  </div>
+</header>
+
+<nav>
+  <a class="navlink" href="#intro">Introduction</a>
+  <a class="navlink" href="#kinds-inheritance">Kinds of Inheritance</a>
+  <a class="navlink" href="#inheritance">Inheritance</a>
+  <a class="navlink" href="#encapsulation">Encapsulation</a>
+  <a class="navlink" href="#polymorphism">Polymorphism</a>
+  <a class="navlink" href="#full-example">Full Example</a>
+  <a class="navlink" href="#activities">Activities</a>
+  <a class="navlink" href="#summary">Summary</a>
+</nav>
+
+<div class="two-col">
+<main>
+
+<!-- INTRO -->
+<section id="intro" class="card">
+  <h2>Introduction</h2>
+  <p class="lead">
+    Object-Oriented Programming (OOP) allows you to organize your VB.NET Windows Forms projects into clear,
+    reusable components. This module covers the 3 pillars of OOP — Inheritance, Encapsulation, and Polymorphism —
+    using real student-related examples.
+  </p>
+</section>
+
+<!-- KINDS OF INHERITANCE -->
+<section id="kinds-inheritance" class="card">
+  <h2>0. Kinds of Inheritance in VB.NET</h2>
+  <p class="small">VB.NET mainly supports **Single**, **Multilevel**, and **Hierarchical** Inheritance.</p>
+
+  <h3>✔ 1. Single Inheritance</h3>
+  <p class="small">One child inherits from one parent.</p>
+
+<div class="code"><pre><code>Public Class Student
+    Public Property FullName As String
+End Class
+
+Public Class SeniorHighStudent
+    Inherits Student
+    Public Property Strand As String
+End Class
+</code></pre></div>
+
+  <h3 style="margin-top:12px">✔ 2. Multilevel Inheritance</h3>
+  <p class="small">A child inherits from a class that also inherits from another class (Grandparent → Parent → Child).</p>
+
+<div class="code"><pre><code>Public Class Person
+    Public Property Name As String
+End Class
+
+Public Class Student
+    Inherits Person
+    Public Property StudentID As String
+End Class
+
+Public Class AthleteStudent
+    Inherits Student
+    Public Property Sport As String
+End Class
+</code></pre></div>
+
+  <h3 style="margin-top:12px">✔ 3. Hierarchical Inheritance</h3>
+  <p class="small">Many child classes inherit from the same parent class.</p>
+
+<div class="code"><pre><code>Public Class Student
+    Public Property Name As String
+End Class
+
+Public Class HonorStudent
+    Inherits Student
+    Public Property HonorRank As String
+End Class
+
+Public Class WorkingStudent
+    Inherits Student
+    Public Property WorkHours As Integer
+End Class
+</code></pre></div>
+</section>
+
+<!-- INHERITANCE -->
+<section id="inheritance" class="card">
+  <h2>1. Inheritance — Student Examples</h2>
+  <p class="small">Inheritance lets a child class reuse fields and methods from a parent class.</p>
+
+<div class="code"><pre><code>Public Class Student
+    Public Property StudentID As String
+    Public Property FullName As String
+    Public Property Age As Integer
+
+    Public Sub ShowBasicInfo()
+        MessageBox.Show("Name: " & FullName & vbCrLf & "ID: " & StudentID)
+    End Sub
+End Class
+
+Public Class SeniorHighStudent
+    Inherits Student
+    Public Property Strand As String
+End Class
+
+Public Class CollegeStudent
+    Inherits Student
+    Public Property Course As String
+End Class
+
+' Usage:
+Dim sh As New SeniorHighStudent()
+sh.FullName = "Juan Dela Cruz"
+sh.StudentID = "2025-SHS-001"
+sh.Strand = "STEM"
+sh.ShowBasicInfo()
+</code></pre></div>
+</section>
+
+<!-- ENCAPSULATION -->
+<section id="encapsulation" class="card">
+  <h2>2. Encapsulation — Protecting Student Data</h2>
+  <p class="small">Encapsulation protects sensitive values by using private fields with validation.</p>
+
+<div class="code"><pre><code>Public Class StudentGrade
+    Private _grade As Double
+
+    Public Property Grade As Double
+        Get
+            Return _grade
+        End Get
+        Set(value As Double)
+            If value >= 0 And value <= 100 Then
+                _grade = value
+            Else
+                MessageBox.Show("Grade must be between 0 and 100.")
+            End If
+        End Set
+    End Property
+End Class
+</code></pre></div>
+</section>
+
+<!-- POLYMORPHISM -->
+<section id="polymorphism" class="card">
+  <h2>3. Polymorphism — Student-Focused</h2>
+  <p class="small">Polymorphism allows the same method to behave differently depending on the object type.</p>
+
+<div class="code"><pre><code>Public Class Student
+    Public Overridable Function ShowStudentType() As String
+        Return "General Student"
+    End Function
+End Class
+
+Public Class SeniorHighStudent
+    Inherits Student
+    Public Overrides Function ShowStudentType() As String
+        Return "Senior High Student"
+    End Function
+End Class
+
+Public Class CollegeStudent
+    Inherits Student
+    Public Overrides Function ShowStudentType() As String
+        Return "College Student"
+    End Function
+End Class
+</code></pre></div>
+</section>
+
+<!-- FULL EXAMPLE -->
+<section id="full-example" class="card">
+  <h2>Full Combined Example</h2>
+
+<div class="code"><pre><code>Public Class Student
+    Public Property FullName As String
+    Public Property StudentID As String
+
+    Public Overridable Sub ShowInfo()
+        MessageBox.Show("Student: " & FullName)
+    End Sub
+End Class
+
+Public Class SeniorHighStudent
+    Inherits Student
+
+    Private _strand As String
+    Public Property Strand As String
+        Get
+            Return _strand
+        End Get
+        Set(value As String)
+            _strand = value
+        End Set
+    End Property
+
+    Public Overrides Sub ShowInfo()
+        MessageBox.Show("SHS: " & FullName & " - Strand: " & Strand)
+    End Sub
+End Class
+
+Public Class CollegeStudent
+    Inherits Student
+
+    Private _gpa As Double
+    Public Property GPA As Double
+        Get
+            Return _gpa
+        End Get
+        Set(value As Double)
+            If value >= 1.0 And value <= 5.0 Then
+                _gpa = value
+            Else
+                MessageBox.Show("GPA must be between 1.0 and 5.0")
+            End If
+        End Set
+    End Property
+
+    Public Overrides Sub ShowInfo()
+        MessageBox.Show("College: " & FullName & " - GPA: " & GPA)
+    End Sub
+End Class
+
+' Usage in Form:
+Dim s As Student = New CollegeStudent()
+s.FullName = "Ana Santos"
+CType(s, CollegeStudent).GPA = 1.75
+s.ShowInfo()
+</code></pre></div>
+</section>
+
+<!-- ACTIVITIES -->
+<section id="activities" class="card">
+  <h2>Class Activities</h2>
+  <ol>
+    <li>Create an AthleteStudent and HonorStudent class (Inheritance).</li>
+    <li>Build StudentBalance class with validation (Encapsulation).</li>
+    <li>Override GetRemarks() in different student types (Polymorphism).</li>
+    <li>Create a small Windows Forms app using all 3 concepts.</li>
+  </ol>
+</section>
+
+<!-- SUMMARY -->
+<section id="summary" class="card">
+  <h2>Summary</h2>
+  <p class="small">
+    ✔ Inheritance — reuse common Student properties  
+    ✔ Encapsulation — protect grades and sensitive data  
+    ✔ Polymorphism — same method, different result  
+  </p>
+</section>
+
+</main>
+
+<aside>
+  <section class="tips">
+    <h3 style="margin-top:0">Quick Tips</h3>
+    <ul>
+      <li class="small">Use <code>Inherits</code> to extend behavior.</li>
+      <li class="small">Use <code>Private</code> fields for safety.</li>
+      <li class="small"><code>Overrides</code> = change parent behavior.</li>
+    </ul>
+  </section>
+</aside>
+
+</div>
+
+<footer>
+  <div style="display:flex;justify-content:space-between;align-items:center;gap:12px">
+    <div class="small">Module generated for classroom use Only</div>
+    <div class="small">Made with ❤️ by: Coder</div>
+  </div>
+</footer>
+</div>
+
+<script>
+// Copy Button Functionality
+document.querySelectorAll('.card .code').forEach(function(div){
+  var btn = document.createElement('button');
+  btn.className = 'btn copy-btn';
+  btn.textContent = 'Copy';
+  div.parentElement.insertBefore(btn, div);
+  btn.addEventListener('click', function(){
+    var text = div.innerText;
+    navigator.clipboard.writeText(text).then(function(){
+      var save = btn.textContent;
+      btn.textContent = 'Copied!';
+      setTimeout(function(){ btn.textContent = save; }, 1000);
+    });
+  });
+});
+</script>
+
+</body>
+</html>
+Made with
